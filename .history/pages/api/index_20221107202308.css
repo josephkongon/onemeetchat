@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,400;0,500;1,300&display=swap');
+html,
+body {
+  margin: 0px;
+  font-family: 'roboto';
+}
+.mainscrollbar::-webkit-scrollbar {
+  display: none;
+}
+.mainscrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
