@@ -27,6 +27,7 @@ import { useRouter } from 'next/router';
 import Router from 'next/router';
 
 const Layout: FC = () => {
+  const router = useRouter();
   const { user } = useSelector((store: any) => store);
 
   const { socket, peer } = useContext(SocketContext);
@@ -48,7 +49,7 @@ const Layout: FC = () => {
   const message2 = useRef<HTMLInputElement | null>(null);
   const [newUser, setNewUser] = useState<any>();
   const [{ country, gender, name }] = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
+
   //console.log(name, country, countryName, countryCode);
   const ctry = {
     typeof: 'country',
@@ -134,16 +135,10 @@ const Layout: FC = () => {
 
     return () => clearInterval(interval);
   }, [conn, name]);
+
   useEffect(() => {
-    if (user.name === '') {
+    if (!user.name) {
       Router.push('/');
-    } else {
-      setLoading(true);
-    }
-  }, []);
-  useEffect(() => {
-    if (user.name == '') {
-      return;
     }
 
     if (deviceType.isMobile) setMobile(true);
@@ -369,6 +364,9 @@ const Layout: FC = () => {
           });
         });
       });
+    if (user.name === '') {
+      router.push('/message');
+    }
 
     return () => {
       if (stream) stream?.getTracks().forEach((t) => t.stop());
@@ -378,6 +376,7 @@ const Layout: FC = () => {
       // socket.emit('callOff');
       // socket.emit('stopCalling');
 
+      //window.location.reload();
       //peer.disconnect();
 
       // peer.destroy();
@@ -439,8 +438,9 @@ const Layout: FC = () => {
     if (message.current) message.current.value = '';
     if (message2.current) message2.current.value = '';
   };
-  if (!loading) return <Box></Box>;
-
+  if (user.name === '') {
+    <Box></Box>;
+  }
   return (
     <Box
       h='100vh'

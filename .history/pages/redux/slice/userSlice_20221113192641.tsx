@@ -20,7 +20,7 @@ const UserSlice = createSlice({
       if (payload.name) start.name = payload.userId;
       if (payload.gender) start.gender = payload.email;
       if (payload.country) start.country = payload.country;
-      if (payload.cameraOn) start.cameraOn = payload.cameraOn;
+      if (payload.cameraON) start.cameraOn = payload.cameraOn;
       if (payload.micOn) start.micOn = payload.micOn;
     },
   },

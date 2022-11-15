@@ -18,20 +18,21 @@ import { ColorModeSwitcher } from '../components/ColorModeSwitcher';
 import { MessageType } from '../components/Layout';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import Router from 'next/router';
 
 const Message = () => {
+  let router = useRouter();
   const { user } = useSelector((store: any) => store);
+
+  console.log('message user', user);
   const { socket, peer } = useContext(SocketContext);
   const [messages, setMessages] = useState<Array<MessageType | any>>([]);
   const message = useRef<HTMLInputElement | null>(null);
   const [newUser, setNewUser] = useState<UserType | null | any>(null);
   const [{ country, gender, name }] = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
   const handleSend = (e: any) => {
     e.preventDefault();
     const text = message.current?.value.trim() as string;
-    // if (!text) return;
+    if (!text) return;
     // if (newUser === null) {
     //   alert('not connected yet');
     //   return;
@@ -72,14 +73,8 @@ const Message = () => {
     return () => clearInterval(interval);
   }, [newUser]);
   useEffect(() => {
-    if (user.name === '') {
-      Router.push('/');
-    } else {
-      setLoading(true);
-    }
-  }, []);
-  useEffect(() => {
-    if (user.name == '') {
+    if (!user.name) {
+      router.push('/');
       return;
     }
     socket.off('messaging').emit('messaging', {
@@ -112,6 +107,7 @@ const Message = () => {
       // socket.off('Off').emit('Off', { socketId: newUser?.socketId });
       setNewUser(null);
       setMessages([]);
+      //window.location.reload();
     };
   }, []);
 
@@ -123,7 +119,6 @@ const Message = () => {
 
     return time;
   };
-  if (!loading) return <Box></Box>;
   return (
     <Box
       h={'100vh'}

@@ -54,6 +54,7 @@ export const UserInfo = () => {
       return;
     }
 
+    console.log('here', name, { countryCode, countryName }, gender);
     dispatch(
       setUserData({
         name,
@@ -61,7 +62,7 @@ export const UserInfo = () => {
         gender: gender,
       })
     );
-    router.push('/call');
+    //router.push('/call');
     onClose();
   };
   const handleToMsg = () => {
@@ -71,15 +72,13 @@ export const UserInfo = () => {
     if (!name) {
       return;
     }
-
-    dispatch(
-      setUserData({
-        name,
-        country: { code: countryCode, name: countryName },
-        gender: gender,
-      })
-    );
-    router.push('/message');
+    console.log(countryCode, countryName);
+    setUserData({
+      name,
+      country: { code: countryCode, name: countryName },
+      gender: gender,
+    });
+    //router.push('/message');
     onClose();
   };
   useEffect(() => {

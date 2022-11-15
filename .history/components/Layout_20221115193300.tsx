@@ -140,9 +140,9 @@ const Layout: FC = () => {
     } else {
       setLoading(true);
     }
-  }, []);
+  });
   useEffect(() => {
-    if (user.name == '') {
+    if (user.name == '' || !user.name) {
       return;
     }
 
@@ -378,6 +378,7 @@ const Layout: FC = () => {
       // socket.emit('callOff');
       // socket.emit('stopCalling');
 
+      //window.location.reload();
       //peer.disconnect();
 
       // peer.destroy();

@@ -79,7 +79,7 @@ export const UserInfo = () => {
         gender: gender,
       })
     );
-    router.push('/message');
+    router.push('./message');
     onClose();
   };
   useEffect(() => {

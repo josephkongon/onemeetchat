@@ -7,8 +7,6 @@ const initialStart = {
     code: '',
     name: '',
   },
-  micOn: true,
-  cameraOn: true,
 };
 // @ts-ignore */
 const UserSlice = createSlice({
@@ -20,8 +18,6 @@ const UserSlice = createSlice({
       if (payload.name) start.name = payload.userId;
       if (payload.gender) start.gender = payload.email;
       if (payload.country) start.country = payload.country;
-      if (payload.cameraOn) start.cameraOn = payload.cameraOn;
-      if (payload.micOn) start.micOn = payload.micOn;
     },
   },
 });

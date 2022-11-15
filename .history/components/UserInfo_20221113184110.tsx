@@ -14,7 +14,6 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import React, { useState, useRef, useEffect } from 'react';
 import { GiFemale } from 'react-icons/gi';
 import { useDispatch } from 'react-redux';
@@ -24,7 +23,6 @@ import { Privacy } from './Privacy';
 import { Terms } from './Terms';
 
 export const UserInfo = () => {
-  let router = useRouter();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -54,6 +52,7 @@ export const UserInfo = () => {
       return;
     }
 
+    console.log(name, { countryCode, countryName }, gender);
     dispatch(
       setUserData({
         name,
@@ -61,25 +60,21 @@ export const UserInfo = () => {
         gender: gender,
       })
     );
-    router.push('/call');
     onClose();
+    //navigate('/call');
   };
   const handleToMsg = () => {
     const name = nameInputRef.current?.value as string;
-    console.log('name', name);
 
     if (!name) {
       return;
     }
-
-    dispatch(
-      setUserData({
-        name,
-        country: { code: countryCode, name: countryName },
-        gender: gender,
-      })
-    );
-    router.push('/message');
+    console.log(name, { countryCode, countryName }, gender);
+    setUserData({
+      name,
+      country: { code: countryCode, name: countryName },
+      gender: gender,
+    });
     onClose();
   };
   useEffect(() => {

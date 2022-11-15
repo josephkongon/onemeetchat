@@ -54,6 +54,7 @@ export const UserInfo = () => {
       return;
     }
 
+    console.log(name, { countryCode, countryName }, gender);
     dispatch(
       setUserData({
         name,
@@ -66,19 +67,16 @@ export const UserInfo = () => {
   };
   const handleToMsg = () => {
     const name = nameInputRef.current?.value as string;
-    console.log('name', name);
 
     if (!name) {
       return;
     }
-
-    dispatch(
-      setUserData({
-        name,
-        country: { code: countryCode, name: countryName },
-        gender: gender,
-      })
-    );
+    console.log(name, { countryCode, countryName }, gender);
+    setUserData({
+      name,
+      country: { code: countryCode, name: countryName },
+      gender: gender,
+    });
     router.push('/message');
     onClose();
   };

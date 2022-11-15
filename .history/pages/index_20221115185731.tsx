@@ -137,8 +137,8 @@ const Home = () => {
           >
             <Box p={{ base: '3rem', md: '2rem' }} fontSize='1.5rem'>
               <Text>
-                This site was build with user experience in mind, it is
-                resposive to all devices, from Mobile Phones to Labtop
+                This site was build with user experience in mind, it resposive
+                to all devices, from Mobile Phones to Labtop
               </Text>
             </Box>
           </Box>

@@ -17,20 +17,20 @@ const Home = () => {
   useEffect(() => {});
   return (
     <Box w={'100vw'} h={'1fr'}>
-      <Head>
-        <title>One Meet Chat</title>
-        <meta
-          name='meet random people'
-          content='Meet new people all around the world through video call and message'
-        />
-        <meta name='random call' content='Random calls with strangers ' />
-        <meta
-          name='random message'
-          content='Talk to stangers through messages'
-        />
-        <link rel='icon' />
-      </Head>
       <Box w={'100vw'} h={'100vh'} overflowX='hidden' className='mainscrollbar'>
+        <Head>
+          <title>One Meet Chat</title>
+          <meta
+            name='meet random people'
+            content='Meet new people all around the world through video call and message'
+          />
+          <meta name='random call' content='Random calls with strangers ' />
+          <meta
+            name='random message'
+            content='Talk to stangers through messages'
+          />
+          <link rel='icon' />
+        </Head>
         <Box
           display={'flex'}
           justifyContent='space-between'
@@ -137,8 +137,8 @@ const Home = () => {
           >
             <Box p={{ base: '3rem', md: '2rem' }} fontSize='1.5rem'>
               <Text>
-                This site was build with user experience in mind, it is
-                resposive to all devices, from Mobile Phones to Labtop
+                This site was build with user experience in mind, it resposive
+                to all devices, from Mobile Phones to Labtop
               </Text>
             </Box>
           </Box>

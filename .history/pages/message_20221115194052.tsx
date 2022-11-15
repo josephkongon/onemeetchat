@@ -79,7 +79,7 @@ const Message = () => {
     }
   }, []);
   useEffect(() => {
-    if (user.name == '') {
+    if (user.name == '' || !user.name) {
       return;
     }
     socket.off('messaging').emit('messaging', {
@@ -112,6 +112,7 @@ const Message = () => {
       // socket.off('Off').emit('Off', { socketId: newUser?.socketId });
       setNewUser(null);
       setMessages([]);
+      //window.location.reload();
     };
   }, []);
 

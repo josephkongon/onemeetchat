@@ -46,6 +46,7 @@ export const UserInfo = () => {
   const handlesubmit = (e: any) => {
     e?.preventDefault?.();
     const name = nameInputRef.current?.value as string;
+    console.log('name', name);
 
     if (!name) {
       return;

@@ -16,22 +16,17 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { SocketContext } from '../provider/SocketProvider';
 import { ColorModeSwitcher } from '../components/ColorModeSwitcher';
 import { MessageType } from '../components/Layout';
-import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import Router from 'next/router';
-
 const Message = () => {
-  const { user } = useSelector((store: any) => store);
+  const { user } = useContext((store: any) => store);
   const { socket, peer } = useContext(SocketContext);
   const [messages, setMessages] = useState<Array<MessageType | any>>([]);
   const message = useRef<HTMLInputElement | null>(null);
   const [newUser, setNewUser] = useState<UserType | null | any>(null);
   const [{ country, gender, name }] = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
   const handleSend = (e: any) => {
     e.preventDefault();
     const text = message.current?.value.trim() as string;
-    // if (!text) return;
+    if (!text) return;
     // if (newUser === null) {
     //   alert('not connected yet');
     //   return;
@@ -72,22 +67,13 @@ const Message = () => {
     return () => clearInterval(interval);
   }, [newUser]);
   useEffect(() => {
-    if (user.name === '') {
-      Router.push('/');
-    } else {
-      setLoading(true);
-    }
-  }, []);
-  useEffect(() => {
-    if (user.name == '') {
-      return;
-    }
     socket.off('messaging').emit('messaging', {
       userName: 'sds',
       country: 'sdsd',
       countryName: 'sds',
       countryCode: 'sdsd',
     });
+    // if (!name) return;
     socket.off('randomuser').on('randomuser', (Nuser: UserType) => {
       setNewUser(Nuser);
     });
@@ -112,9 +98,12 @@ const Message = () => {
       // socket.off('Off').emit('Off', { socketId: newUser?.socketId });
       setNewUser(null);
       setMessages([]);
+      //window.location.reload();
     };
   }, []);
-
+  // if (!name) {
+  //   return <Navigate to='/' replace />;
+  // }
   const dataData = () => {
     let today = new Date();
     let time =
@@ -123,7 +112,6 @@ const Message = () => {
 
     return time;
   };
-  if (!loading) return <Box></Box>;
   return (
     <Box
       h={'100vh'}

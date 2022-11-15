@@ -28,6 +28,7 @@ import Router from 'next/router';
 
 const Layout: FC = () => {
   const { user } = useSelector((store: any) => store);
+  console.log('user', user);
 
   const { socket, peer } = useContext(SocketContext);
   const [newcountry, setNewCountry] = useState<string | null>(null);
@@ -142,7 +143,7 @@ const Layout: FC = () => {
     }
   }, []);
   useEffect(() => {
-    if (user.name == '') {
+    if (user.name == '' || !user.name) {
       return;
     }
 

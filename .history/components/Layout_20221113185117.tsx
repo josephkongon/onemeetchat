@@ -23,12 +23,9 @@ import { Genders } from './Genders';
 import { SocketContext } from '../provider/SocketProvider';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import Router from 'next/router';
-
 const Layout: FC = () => {
+  //const navigate = useNavigate();
   const { user } = useSelector((store: any) => store);
-
   const { socket, peer } = useContext(SocketContext);
   const [newcountry, setNewCountry] = useState<string | null>(null);
   const [newcountryCode, setNewCountrycode] = useState<string>('');
@@ -47,8 +44,9 @@ const Layout: FC = () => {
   const message = useRef<HTMLInputElement | null>(null);
   const message2 = useRef<HTMLInputElement | null>(null);
   const [newUser, setNewUser] = useState<any>();
+
   const [{ country, gender, name }] = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
+
   //console.log(name, country, countryName, countryCode);
   const ctry = {
     typeof: 'country',
@@ -134,17 +132,9 @@ const Layout: FC = () => {
 
     return () => clearInterval(interval);
   }, [conn, name]);
+
   useEffect(() => {
-    if (user.name === '') {
-      Router.push('/');
-    } else {
-      setLoading(true);
-    }
-  }, []);
-  useEffect(() => {
-    if (user.name == '') {
-      return;
-    }
+    //if (!name) return;
 
     if (deviceType.isMobile) setMobile(true);
     else setMobile(false);
@@ -378,6 +368,7 @@ const Layout: FC = () => {
       // socket.emit('callOff');
       // socket.emit('stopCalling');
 
+      //window.location.reload();
       //peer.disconnect();
 
       // peer.destroy();
@@ -439,7 +430,10 @@ const Layout: FC = () => {
     if (message.current) message.current.value = '';
     if (message2.current) message2.current.value = '';
   };
-  if (!loading) return <Box></Box>;
+
+  // if (!name) {
+  //   //return <Navigate to='/' replace />;
+  // }
 
   return (
     <Box

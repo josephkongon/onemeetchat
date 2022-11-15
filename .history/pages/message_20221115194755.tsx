@@ -79,7 +79,7 @@ const Message = () => {
     }
   }, []);
   useEffect(() => {
-    if (user.name == '') {
+    if (user.name == '' || !user.name) {
       return;
     }
     socket.off('messaging').emit('messaging', {

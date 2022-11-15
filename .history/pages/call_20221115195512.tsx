@@ -7,7 +7,7 @@ const Call = () => {
   useEffect(() => {
     return () => {
       //socket.emit('callOff');
-      //socket.emit('stopCalling');
+      socket.emit('stopCalling');
     };
   }, []);
   return (
