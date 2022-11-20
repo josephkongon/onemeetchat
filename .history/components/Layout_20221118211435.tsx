@@ -22,13 +22,13 @@ import { UserContext } from '../provider/UserProvider';
 import { Genders } from './Genders';
 import { SocketContext } from '../provider/SocketProvider';
 import dynamic from 'next/dynamic';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Router from 'next/router';
 
 const Layout: FC = () => {
   const { user } = useSelector((store: any) => store);
-  const dispath = useDispatch();
+
   const { socket, peer } = useContext(SocketContext);
   const [newcountry, setNewCountry] = useState<string | null>(null);
   const [newcountryCode, setNewCountrycode] = useState<string>('');
@@ -93,7 +93,6 @@ const Layout: FC = () => {
   };
   const handleCamera = () => {
     setCamera((c) => !c);
-
     const m = {
       typeof: 'camera',
       senderId: socket.id,
@@ -104,7 +103,6 @@ const Layout: FC = () => {
     conn?.send(m);
   };
   const handleStop = () => {
-    if (!newUser?.socketId) return;
     socket.off('callOff').emit('callOff', { socketId: newUser?.socketId });
     setRecall(false);
     conn?.close();
@@ -112,13 +110,13 @@ const Layout: FC = () => {
     // setConn(null);
   };
   const handleNext = () => {
-    if (!newUser?.socketId) return;
     conn?.close();
+
     socket.off('callOff').emit('callOff', { socketId: newUser?.socketId });
     setNewUser(null);
     setConn(null);
 
-    //socket.emit('reconnect');
+    socket.emit('reconnect');
     setRecall(true);
   };
 
@@ -127,7 +125,7 @@ const Layout: FC = () => {
       if (!conn && recall) {
         console.log('reconnect');
 
-        socket.emit('reconnect');
+        ///socket.emit('reconnect');
       }
     }, 4000);
 
@@ -168,20 +166,6 @@ const Layout: FC = () => {
         console.log('connection open');
         conn?.send(ctry);
 
-        // conn?.send({
-        //   typeof: 'mic',
-        //   senderId: socket.id,
-        //   text: '',
-        //   to: 'me',
-        //   active: !mic,
-        // });
-        // conn?.send({
-        //   typeof: 'camera',
-        //   senderId: socket.id,
-        //   text: '',
-        //   to: 'me',
-        //   active: !camera,
-        // });
         conn?.send(ctrycode);
         conn.send(ctryName);
         conn.send(sendGender);
@@ -261,7 +245,7 @@ const Layout: FC = () => {
             console.log('Remote call ready');
             mainVidRef.current.srcObject = stream;
             subVidRef.current.srcObject = recStream;
-            subVidRef.current.muted = false;
+            subVidRef.current.muted = true;
             subVidRef.current.style.display = 'unset';
           });
 
@@ -362,7 +346,7 @@ const Layout: FC = () => {
           call.on('stream', (remoteStream) => {
             recStream = remoteStream;
             mainVidRef.current.srcObject = stream;
-            subVidRef.current.muted = false;
+            subVidRef.current.muted = true;
             subVidRef.current.srcObject = recStream;
             subVidRef.current.style.display = 'unset';
           });
@@ -375,8 +359,8 @@ const Layout: FC = () => {
             setConn(null);
           });
           socket.off('disconnectCall').on('disconnectCall', () => {
-            conn?.close();
-            setConn(null);
+            socket.emit('callOff');
+            //socket.emit('stopCalling');
           });
         });
       });
@@ -477,13 +461,13 @@ const Layout: FC = () => {
           w='4rem'
           //bg='transparent'
           position={'absolute'}
-          left='1rem'
-          top={{ base: '1rem', md: 'unset' }}
-          bottom={{ base: 'unset', md: '1rem' }}
+          left='2rem'
+          top={{ base: '0', sm: 'unset' }}
+          bottom={{ base: 'unset', sm: '0' }}
         >
           <Box display='flex' height={'100%'}>
             <Box
-              fontSize={{ base: '1.3rem', sm: '1.6rem', md: '2rem' }}
+              fontSize={'1.5rem'}
               height='100%'
               display={'flex'}
               justifyContent='flex-end'

@@ -17,7 +17,6 @@ import { SocketContext } from '../provider/SocketProvider';
 const Home = () => {
   const { socket, peer } = useContext(SocketContext);
   useEffect(() => {
-    console.log('home page');
     socket.off('stopCalling').emit('stopCalling');
     socket.off('OffOff').emit('OffOff');
   }, []);

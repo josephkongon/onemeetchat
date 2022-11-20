@@ -477,13 +477,13 @@ const Layout: FC = () => {
           w='4rem'
           //bg='transparent'
           position={'absolute'}
-          left='1rem'
-          top={{ base: '1rem', md: 'unset' }}
-          bottom={{ base: 'unset', md: '1rem' }}
+          left='2rem'
+          top={{ base: '0', md: 'unset' }}
+          bottom={{ base: 'unset', md: '0' }}
         >
           <Box display='flex' height={'100%'}>
             <Box
-              fontSize={{ base: '1.3rem', sm: '1.6rem', md: '2rem' }}
+              fontSize={'1.5rem'}
               height='100%'
               display={'flex'}
               justifyContent='flex-end'

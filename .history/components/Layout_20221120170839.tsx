@@ -168,20 +168,20 @@ const Layout: FC = () => {
         console.log('connection open');
         conn?.send(ctry);
 
-        // conn?.send({
-        //   typeof: 'mic',
-        //   senderId: socket.id,
-        //   text: '',
-        //   to: 'me',
-        //   active: !mic,
-        // });
-        // conn?.send({
-        //   typeof: 'camera',
-        //   senderId: socket.id,
-        //   text: '',
-        //   to: 'me',
-        //   active: !camera,
-        // });
+        conn?.send({
+          typeof: 'mic',
+          senderId: socket.id,
+          text: '',
+          to: 'me',
+          active: !mic,
+        });
+        conn?.send({
+          typeof: 'camera',
+          senderId: socket.id,
+          text: '',
+          to: 'me',
+          active: !camera,
+        });
         conn?.send(ctrycode);
         conn.send(ctryName);
         conn.send(sendGender);
@@ -477,13 +477,13 @@ const Layout: FC = () => {
           w='4rem'
           //bg='transparent'
           position={'absolute'}
-          left='1rem'
-          top={{ base: '1rem', md: 'unset' }}
-          bottom={{ base: 'unset', md: '1rem' }}
+          left='2rem'
+          top={{ base: '0', sm: 'unset' }}
+          bottom={{ base: 'unset', sm: '0' }}
         >
           <Box display='flex' height={'100%'}>
             <Box
-              fontSize={{ base: '1.3rem', sm: '1.6rem', md: '2rem' }}
+              fontSize={'1.5rem'}
               height='100%'
               display={'flex'}
               justifyContent='flex-end'

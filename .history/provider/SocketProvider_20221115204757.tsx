@@ -63,16 +63,12 @@ const connect = {
 
 const SocketContext = createContext(connect);
 
-type BoxProps = {
-  children: React.ReactNode; // 👈️ type children
-};
-const SocketProvider = (prop: BoxProps) => {
+const SocketProvider: FC = (props: any) => {
+  const { children } = props;
   const { socket, peer } = useContext(SocketContext);
   useEffect(() => {});
   return (
-    <SocketContext.Provider value={connect}>
-      {prop.children}
-    </SocketContext.Provider>
+    <SocketContext.Provider value={connect}>{children}</SocketContext.Provider>
   );
 };
 

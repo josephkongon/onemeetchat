@@ -103,7 +103,7 @@ const Message = () => {
       console.log('disconnected');
       setNewUser(null);
       setMessages([]);
-      ///socket.off('Off').emit('Off', { socketId: newUser?.socketId });
+      socket.off('Off').emit('Off', { socketId: newUser?.socketId });
     });
 
     return () => {

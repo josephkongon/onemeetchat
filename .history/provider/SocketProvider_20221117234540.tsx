@@ -53,7 +53,7 @@ const truke = {
 };
 const peer = new Peer();
 //DEV_MODE ? '/' : 'ws://namespace.herokuapp.com'
-const socket = io('wss://api.onemeetchat.com/');
+const socket = io('wss://api.onemeetchat.com');
 //'wss://api.onemeetchat.com/'
 //http://143.110.147.156:5000'
 const connect = {

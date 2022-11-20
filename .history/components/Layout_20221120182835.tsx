@@ -477,7 +477,7 @@ const Layout: FC = () => {
           w='4rem'
           //bg='transparent'
           position={'absolute'}
-          left='1rem'
+          left='2rem'
           top={{ base: '1rem', md: 'unset' }}
           bottom={{ base: 'unset', md: '1rem' }}
         >

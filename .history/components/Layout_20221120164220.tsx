@@ -28,7 +28,7 @@ import Router from 'next/router';
 
 const Layout: FC = () => {
   const { user } = useSelector((store: any) => store);
-  const dispath = useDispatch();
+  dispath = useDispatch()
   const { socket, peer } = useContext(SocketContext);
   const [newcountry, setNewCountry] = useState<string | null>(null);
   const [newcountryCode, setNewCountrycode] = useState<string>('');
@@ -93,7 +93,7 @@ const Layout: FC = () => {
   };
   const handleCamera = () => {
     setCamera((c) => !c);
-
+    
     const m = {
       typeof: 'camera',
       senderId: socket.id,
@@ -168,20 +168,6 @@ const Layout: FC = () => {
         console.log('connection open');
         conn?.send(ctry);
 
-        // conn?.send({
-        //   typeof: 'mic',
-        //   senderId: socket.id,
-        //   text: '',
-        //   to: 'me',
-        //   active: !mic,
-        // });
-        // conn?.send({
-        //   typeof: 'camera',
-        //   senderId: socket.id,
-        //   text: '',
-        //   to: 'me',
-        //   active: !camera,
-        // });
         conn?.send(ctrycode);
         conn.send(ctryName);
         conn.send(sendGender);
@@ -261,7 +247,7 @@ const Layout: FC = () => {
             console.log('Remote call ready');
             mainVidRef.current.srcObject = stream;
             subVidRef.current.srcObject = recStream;
-            subVidRef.current.muted = false;
+            subVidRef.current.muted = true;
             subVidRef.current.style.display = 'unset';
           });
 
@@ -362,7 +348,7 @@ const Layout: FC = () => {
           call.on('stream', (remoteStream) => {
             recStream = remoteStream;
             mainVidRef.current.srcObject = stream;
-            subVidRef.current.muted = false;
+            subVidRef.current.muted = true;
             subVidRef.current.srcObject = recStream;
             subVidRef.current.style.display = 'unset';
           });
@@ -477,13 +463,13 @@ const Layout: FC = () => {
           w='4rem'
           //bg='transparent'
           position={'absolute'}
-          left='1rem'
-          top={{ base: '1rem', md: 'unset' }}
-          bottom={{ base: 'unset', md: '1rem' }}
+          left='2rem'
+          top={{ base: '0', sm: 'unset' }}
+          bottom={{ base: 'unset', sm: '0' }}
         >
           <Box display='flex' height={'100%'}>
             <Box
-              fontSize={{ base: '1.3rem', sm: '1.6rem', md: '2rem' }}
+              fontSize={'1.5rem'}
               height='100%'
               display={'flex'}
               justifyContent='flex-end'
@@ -500,7 +486,7 @@ const Layout: FC = () => {
           objectFit='cover'
           ref={subVidRef}
           display={conn ? 'flex' : 'none'}
-          muted={true}
+          muted={false}
           w='100%'
           h='100%'
           autoPlay
@@ -609,7 +595,7 @@ const Layout: FC = () => {
             ref={mainVidRef}
             w='100%'
             autoPlay
-            muted={true}
+            muted={false}
             overflow='none'
           ></Box>
         </Box>

@@ -80,7 +80,7 @@ const Home = () => {
             bgSize='cover'
           >
             <Box
-              width={{ base: '100%', sm: '40%' }}
+              width={{ base: '100%', md: '40%' }}
               h={{ base: '73vh', md: '100%' }}
               mt={{ base: '4rem', md: '2rem' }}
               mb={{ base: '4rem', md: 'unset' }}
@@ -104,7 +104,7 @@ const Home = () => {
                 ml='5rem'
                 w='1fr'
                 width={'50%'}
-                display={{ base: 'none', sm: 'flex' }}
+                display={{ base: 'none', md: 'flex' }}
               >
                 <Image
                   width={{ base: '10rem', md: '600px' }}

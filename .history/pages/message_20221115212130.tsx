@@ -103,7 +103,7 @@ const Message = () => {
       console.log('disconnected');
       setNewUser(null);
       setMessages([]);
-      ///socket.off('Off').emit('Off', { socketId: newUser?.socketId });
+      socket.off('Off').emit('Off', { socketId: newUser?.socketId });
     });
 
     return () => {
@@ -167,7 +167,9 @@ const Message = () => {
             MeetChat
           </Box>
         </Box>
-        <Box>{/* <ColorModeSwitcher /> */}</Box>
+        <Box>
+          <ColorModeSwitcher />
+        </Box>
       </Box>
       <Box
         marginTop={'5px'}
