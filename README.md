@@ -1,4 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+Memory updated
+Here's a basic README template for your random video call website:
+
+Random Video Call Website
+How it Works
+This website allows you to join random video calls with other users. When you open the website, you will be connected to a random user who is also on the site and ready to chat. You can chat with them via video call, and when you're done, you can simply disconnect and join another random call if you wish.
+
+Getting Started
+To use this website, you will need to have Node.js installed on your machine. You will also need to run the server before you can start making video calls. Follow the steps below to get started:
+
+Clone this repository to your local machine.
+Navigate to the project directory in your terminal.
+Run npm install to install the dependencies.
+Run npm start to start the server.
+Open your browser and navigate to http://localhost:3000 to use the website.
+Requirements
+Node.js
+
+Web browser (Chrome, Firefox, Safari, etc.)
+Technologies Used
+Node.js
+WebRTC
+Express.js
+Socket.io
+HTML, CSS, JavaScript
 
 ## Getting Started
 
